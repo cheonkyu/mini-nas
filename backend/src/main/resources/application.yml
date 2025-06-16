@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: app
+  servlet:
+    multipart:
+      max-file-size: 1GB
+      max-request-size: 1GB
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/cheonkyu?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
+    username: cheonkyu
+    password: cheonkyu
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true # 콘솔에 SQL 출력
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+server:
+  port: 4000
