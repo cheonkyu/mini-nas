@@ -1,23 +1,19 @@
-package io.cheonkyu.app
+package io.cheonkyu.mini.service
 
+import io.cheonkyu.mini.domain.file.infrastructure.FileMetaRepository
+import io.cheonkyu.mini.domain.file.model.FileMeta
 import java.io.*
 import java.nio.file.Files
-import org.springframework.http.ResponseEntity
+import org.springframework.stereotype.Service
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
 
-@RestController
-@RequestMapping("/upload")
-class ChunkUploadController(val repository: FileStorageRepository) {
+@Service
+class FileUploadService(val repository: FileMetaRepository) {
 
   private val chunkDir = "/tmp/chunks/"
 
-  @PostMapping("/chunk")
-  fun uploadChunk(
-          @RequestParam("file") file: MultipartFile,
-          @RequestParam("fileId") fileId: String,
-          @RequestParam("chunkIndex") chunkIndex: Int
-  ): ResponseEntity<String> {
+  fun uploadChunk(file: MultipartFile, fileId: String, chunkIndex: Int): String {
     val dir = File("$chunkDir$fileId")
     if (!dir.exists()) {
       dir.mkdirs()
@@ -26,20 +22,16 @@ class ChunkUploadController(val repository: FileStorageRepository) {
     val chunkFile = File(dir, "$chunkIndex.part")
     file.transferTo(chunkFile)
 
-    return ResponseEntity.ok("Chunk $chunkIndex received.")
+    return "$chunkIndex"
   }
 
-  @PostMapping("/merge")
-  fun mergeChunks(
-          @RequestParam("fileId") fileId: String,
-          @RequestParam("fileName") fileName: String
-  ): ResponseEntity<String> {
+  fun mergeChunks(fileId: String, fileName: String): String {
     val dir = File("$chunkDir$fileId")
     val partFiles =
             dir.listFiles { _, name -> name.endsWith(".part") }?.sortedBy {
               it.nameWithoutExtension.toInt()
             }
-                    ?: return ResponseEntity.badRequest().body("No chunks found.")
+                    ?: throw FileNotFoundException()
 
     val mergedFile = File("/tmp/$fileName")
     BufferedOutputStream(FileOutputStream(mergedFile)).use { out ->
@@ -52,9 +44,9 @@ class ChunkUploadController(val repository: FileStorageRepository) {
     partFiles.forEach { it.delete() }
     dir.delete()
 
-    val data = FileStorage(fileId = fileId, name = fileName, size = 100L)
+    val data = FileMeta(fileId = fileId, name = fileName, size = mergedFile.length())
     repository.save(data)
 
-    return ResponseEntity.ok("Merged to: ${mergedFile.absolutePath}")
+    return "Merged to: ${mergedFile.absolutePath}"
   }
 }
