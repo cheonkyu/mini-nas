@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mini-NAS | Storage Integration</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed": "#d8e2ff",
+                    "on-secondary": "#ffffff",
+                    "surface-dim": "#d8dadb",
+                    "on-secondary-fixed-variant": "#2e4673",
+                    "surface-tint": "#005bc0",
+                    "secondary-container": "#b2c9fe",
+                    "primary-container": "#1a73e8",
+                    "tertiary-fixed": "#ffdbcb",
+                    "surface-container": "#eceeef",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed": "#341100",
+                    "surface-variant": "#e1e3e4",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "inverse-surface": "#2e3132",
+                    "on-primary-fixed-variant": "#004493",
+                    "error-container": "#ffdad6",
+                    "surface-container-low": "#f2f4f5",
+                    "outline": "#727785",
+                    "tertiary-container": "#c55500",
+                    "error": "#ba1a1a",
+                    "on-background": "#191c1d",
+                    "on-primary-container": "#ffffff",
+                    "on-secondary-fixed": "#001a41",
+                    "outline-variant": "#c1c6d6",
+                    "on-secondary-container": "#3d5481",
+                    "surface-bright": "#f8fafb",
+                    "on-tertiary-container": "#0e0200",
+                    "on-tertiary-fixed-variant": "#783100",
+                    "tertiary-fixed-dim": "#ffb691",
+                    "secondary-fixed": "#d8e2ff",
+                    "inverse-on-surface": "#eff1f2",
+                    "secondary": "#475e8c",
+                    "surface-container-high": "#e6e8e9",
+                    "surface": "#f8fafb",
+                    "primary-fixed-dim": "#adc7ff",
+                    "background": "#f8fafb",
+                    "primary": "#005bbf",
+                    "on-surface": "#191c1d",
+                    "secondary-fixed-dim": "#afc7fb",
+                    "tertiary": "#9e4300",
+                    "inverse-primary": "#adc7ff",
+                    "on-primary-fixed": "#001a41",
+                    "surface-container-highest": "#e1e3e4",
+                    "on-surface-variant": "#414754",
+                    "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass-panel {
+            background: rgba(248, 250, 251, 0.8);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 h-12 flex items-center justify-between px-4 bg-[#1a73e8] dark:bg-blue-900 text-white shadow-md font-['Plus_Jakarta_Sans'] text-sm font-medium">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined cursor-pointer">menu</span>
+<span class="text-lg font-bold">Google Cloud Console</span>
+<div class="ml-4 flex items-center gap-2 bg-blue-700 px-3 py-1 rounded-sm cursor-pointer hover:bg-blue-600 transition-colors">
+<span>Project Selector</span>
+<span class="material-symbols-outlined text-xs">arrow_drop_down</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden md:block">
+<input class="bg-blue-600/50 border-none text-white placeholder-blue-100 text-xs w-96 px-4 py-1.5 rounded-sm focus:ring-0 focus:bg-white focus:text-on-surface transition-all" placeholder="Search resources, services, and docs" type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-blue-100 hover:bg-blue-600 p-1 rounded-full cursor-pointer transition-colors">notifications</span>
+<span class="material-symbols-outlined text-blue-100 hover:bg-blue-600 p-1 rounded-full cursor-pointer transition-colors">help</span>
+<span class="material-symbols-outlined text-blue-100 hover:bg-blue-600 p-1 rounded-full cursor-pointer transition-colors">settings</span>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-blue-400">
+<img alt="User profile" data-alt="professional portrait of a tech professional with a clean modern aesthetic and neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-MrZSt8CFZGKKPmAPOuWy4RHttjpK00LUzKpo_DK2rYiu5TxQHNZZE-RmwVgaukhsf8tZt4HHVHnTOC0gZ32iKDU3qf_AB9Smgd4eck6z5nyISCz2xwx-debPWkZq2VdDYhCAuu65l-CsuTayAVoq04BWHBVgcFP0yVrdvENQj-k-Pv1IvFdzk32Sf3QuJ1m5oLNtg6Yg32vlT4MZbw5PHlNAhzhzoqjTmGRC9XmQWdM1rnagYlCRdWydYV32EhTEM2rYYii8_J8"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Side Navigation Bar -->
+<aside class="fixed left-0 top-12 bottom-0 w-64 bg-[#f2f4f5] dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col h-full pt-4 z-40">
+<div class="px-6 mb-6">
+<h2 class="text-[#1a73e8] dark:text-blue-400 font-headline font-bold text-xs uppercase tracking-wider">Navigation</h2>
+<p class="text-slate-500 text-[10px] font-medium">Management</p>
+</div>
+<nav class="flex-1">
+<a class="text-slate-600 dark:text-slate-400 py-3 px-6 flex items-center gap-3 hover:bg-[#e1e3e4] dark:hover:bg-slate-800 transition-all duration-150 font-['Inter'] text-[13px] leading-tight" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span>Explorer</span>
+</a>
+<a class="text-slate-600 dark:text-slate-400 py-3 px-6 flex items-center gap-3 hover:bg-[#e1e3e4] dark:hover:bg-slate-800 transition-all duration-150 font-['Inter'] text-[13px] leading-tight" href="#">
+<span class="material-symbols-outlined">sync</span>
+<span>Sync</span>
+</a>
+<a class="border-l-4 border-[#1a73e8] text-[#1a73e8] bg-[#e1e3e4] dark:bg-blue-900/20 font-semibold py-3 px-[20px] flex items-center gap-3 transition-all duration-150 font-['Inter'] text-[13px] leading-tight" href="#">
+<span class="material-symbols-outlined">share</span>
+<span>Sharing</span>
+</a>
+<a class="text-slate-600 dark:text-slate-400 py-3 px-6 flex items-center gap-3 hover:bg-[#e1e3e4] dark:hover:bg-slate-800 transition-all duration-150 font-['Inter'] text-[13px] leading-tight" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 mt-12 p-8 min-h-screen bg-surface">
+<header class="mb-8">
+<div class="flex items-center gap-2 text-primary text-xs mb-2">
+<span class="material-symbols-outlined text-sm">cloud</span>
+<span class="font-bold tracking-tight uppercase">Infrastructure</span>
+</div>
+<h1 class="text-3xl font-headline font-extrabold text-on-surface tracking-tight">Storage Integration</h1>
+<p class="text-on-surface-variant text-sm mt-2 max-w-2xl">Connect and manage external storage providers for Mini-NAS synchronization and off-site backup workflows.</p>
+</header>
+<!-- Bento Grid for Active Providers -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Provider Card: S3 -->
+<div class="col-span-1 md:col-span-2 group">
+<div class="bg-surface-container-lowest p-6 h-full flex flex-col justify-between hover:bg-surface-container-low transition-colors cursor-pointer border-l-4 border-primary">
+<div>
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined text-primary text-3xl">storage</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-lg">Amazon S3</h3>
+<span class="text-[10px] bg-primary text-white px-2 py-0.5 rounded-full uppercase tracking-widest font-bold">Recommended</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">open_in_new</span>
+</div>
+<p class="text-sm text-on-surface-variant mb-6 leading-relaxed">Scalable object storage designed to store and retrieve any amount of data from anywhere. Perfect for large datasets and long-term archival.</p>
+</div>
+<div class="flex items-center justify-between pt-4">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-surface-container-high border-2 border-surface-container-lowest flex items-center justify-center">
+<span class="material-symbols-outlined text-[10px]">lock</span>
+</div>
+<div class="w-6 h-6 rounded-full bg-surface-container-high border-2 border-surface-container-lowest flex items-center justify-center">
+<span class="material-symbols-outlined text-[10px]">encrypted</span>
+</div>
+</div>
+<button class="bg-primary text-white px-4 py-2 text-xs font-bold rounded hover:shadow-lg transition-all active:scale-95">Configure Integration</button>
+</div>
+</div>
+</div>
+<!-- Provider Card: Local -->
+<div class="col-span-1">
+<div class="bg-surface-container-low p-6 h-full flex flex-col justify-between border-l-4 border-outline-variant">
+<div>
+<div class="w-10 h-10 flex items-center justify-center bg-on-surface-variant/10 rounded-lg mb-4">
+<span class="material-symbols-outlined text-on-surface-variant">hard_drive</span>
+</div>
+<h3 class="font-headline font-bold text-lg">Local RAID Array</h3>
+<p class="text-sm text-on-surface-variant mt-2">Physical disk management for internal redundancy.</p>
+</div>
+<div class="mt-8">
+<div class="flex justify-between text-[11px] font-bold text-on-surface-variant mb-1 uppercase tracking-tighter">
+<span>Usage</span>
+<span>72%</span>
+</div>
+<div class="h-1 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[72%]"></div>
+</div>
+<button class="w-full mt-6 text-primary text-xs font-bold py-2 hover:bg-surface-container-highest transition-colors">Manage Disks</button>
+</div>
+</div>
+</div>
+<!-- More Providers Row -->
+<div class="col-span-1 bg-surface-container-low p-6 hover:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">cloud_queue</span>
+<span class="font-bold text-sm">Google Cloud Storage</span>
+</div>
+</div>
+<div class="col-span-1 bg-surface-container-low p-6 hover:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">folder_zip</span>
+<span class="font-bold text-sm">Azure Blob Storage</span>
+</div>
+</div>
+<div class="col-span-1 bg-surface-container-low p-6 hover:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="flex items-center gap-3 text-primary">
+<span class="material-symbols-outlined">add</span>
+<span class="font-bold text-sm">Connect Custom Provider</span>
+</div>
+</div>
+</div>
+<!-- S3 Integration Modal Overlay -->
+<div class="fixed inset-0 z-[60] flex items-center justify-center p-4 sm:p-6 lg:p-8">
+<!-- Backdrop -->
+<div class="absolute inset-0 bg-inverse-surface/40 backdrop-blur-sm"></div>
+<!-- Modal Content -->
+<div class="relative w-full max-w-2xl bg-surface-container-lowest shadow-[0px_12px_32px_rgba(25,28,29,0.12)] flex flex-col max-h-[921px]">
+<!-- Header -->
+<div class="p-6 border-b border-outline-variant/10 flex items-center justify-between">
+<div>
+<h2 class="text-xl font-headline font-bold text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">dns</span>
+                            S3 Configuration
+                        </h2>
+<p class="text-xs text-on-surface-variant mt-1">Configure your Amazon Simple Storage Service endpoint and credentials.</p>
+</div>
+<button class="p-2 hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">close</span>
+</button>
+</div>
+<!-- Form Fields -->
+<div class="flex-1 overflow-y-auto p-8 space-y-8">
+<!-- Form Section: Endpoint -->
+<section class="space-y-4">
+<label class="block text-xs font-bold text-on-surface-variant uppercase tracking-widest">Bucket Details</label>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-1.5">
+<label class="text-[13px] font-medium text-on-surface">Bucket Name</label>
+<input class="w-full bg-surface-container-highest border-none focus:ring-1 focus:ring-primary focus:bg-white text-sm p-3 transition-all rounded-sm placeholder-outline" type="text" value="mini-nas-vault-01"/>
+</div>
+<div class="space-y-1.5">
+<label class="text-[13px] font-medium text-on-surface">Region</label>
+<div class="relative">
+<select class="w-full appearance-none bg-surface-container-highest border-none focus:ring-1 focus:ring-primary focus:bg-white text-sm p-3 pr-10 transition-all rounded-sm">
+<option>us-east-1 (N. Virginia)</option>
+<option>us-west-2 (Oregon)</option>
+<option>eu-central-1 (Frankfurt)</option>
+<option>ap-southeast-1 (Singapore)</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Form Section: Credentials -->
+<section class="space-y-4">
+<label class="block text-xs font-bold text-on-surface-variant uppercase tracking-widest">Authentication</label>
+<div class="space-y-6">
+<div class="space-y-1.5">
+<label class="text-[13px] font-medium text-on-surface">Access Key ID</label>
+<input class="w-full bg-surface-container-highest border-none focus:ring-1 focus:ring-primary focus:bg-white text-sm p-3 transition-all rounded-sm" type="password" value="AKIAIOSFODNN7EXAMPLE"/>
+<p class="text-[11px] text-on-surface-variant">The unique identifier for your IAM user or role.</p>
+</div>
+<div class="space-y-1.5">
+<label class="text-[13px] font-medium text-on-surface">Secret Access Key</label>
+<div class="relative">
+<input class="w-full bg-surface-container-highest border-none focus:ring-1 focus:ring-primary focus:bg-white text-sm p-3 transition-all rounded-sm" type="password" value="wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary">
+<span class="material-symbols-outlined text-sm">visibility</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Warning Message -->
+<div class="bg-error-container/20 p-4 border-l-4 border-error flex gap-4">
+<span class="material-symbols-outlined text-error">warning</span>
+<div class="text-xs leading-relaxed text-on-surface">
+<p class="font-bold mb-1">Security Recommendation</p>
+<p>Ensure that your IAM user has the minimum required permissions (<code>s3:PutObject</code>, <code>s3:GetObject</code>, <code>s3:DeleteObject</code>) to maintain security best practices.</p>
+</div>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="p-6 bg-surface-container-low flex justify-end items-center gap-4">
+<button class="px-6 py-2 text-primary text-sm font-bold hover:bg-surface-container-highest transition-colors rounded">Cancel</button>
+<button class="bg-gradient-to-r from-primary to-primary-container text-white px-8 py-2 text-sm font-bold rounded shadow-sm hover:shadow-md transition-all active:scale-95">Establish Connection</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Visual Polish: Status Floating Widget (Asymmetric Element) -->
+<div class="fixed bottom-8 right-8 w-72 glass-panel p-6 shadow-xl border border-outline-variant/10 hidden lg:block">
+<h4 class="text-xs font-bold text-primary uppercase tracking-tighter mb-4">Network Status</h4>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+<span class="text-xs font-medium">Gateway: Active</span>
+</div>
+<span class="text-[10px] text-on-surface-variant">24ms</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+<span class="text-xs font-medium">Uplink: Synchronized</span>
+</div>
+<span class="text-[10px] text-on-surface-variant">1.2 Gbps</span>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-outline-variant/10">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden">
+<img alt="Node icon" data-alt="abstract geometric icon representing a network node or server cluster" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDed7ghcf7OxxZG9VENh3HEEN5iwu6u6Mm2J7VgnS3qyTXcCSVn5xPxCcdrDOZqV3C61IRjXj5YNtbsJDqNi1nuU9Fq_w8VkMip7KRKVl3wrqucN-B3mtK_iNySdNibQ26YKXOIe3RtSTfiu1vpCyLit08AzXFbheyosU44BzXcFHxtDMC70LO1tScQK1_hL_Yytvp52OZOprEO__uchXDvRvIGm5PWFBZ90t_6STjqQW-4IK_66Ev3SlZi7Pvm4xllHKzRiWpISCo"/>
+</div>
+<div>
+<p class="text-[11px] font-bold">Node-Edge-West-01</p>
+<p class="text-[10px] text-on-surface-variant">Primary Management Node</p>
+</div>
+</div>
+</div>
+</div>
+</body></html>

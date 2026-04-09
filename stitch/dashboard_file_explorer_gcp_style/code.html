@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Google Cloud Console - Mini-NAS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "primary-fixed": "#d8e2ff",
+            "on-secondary": "#ffffff",
+            "surface-dim": "#d8dadb",
+            "on-secondary-fixed-variant": "#2e4673",
+            "surface-tint": "#005bc0",
+            "secondary-container": "#b2c9fe",
+            "primary-container": "#1a73e8",
+            "tertiary-fixed": "#ffdbcb",
+            "surface-container": "#eceeef",
+            "on-tertiary": "#ffffff",
+            "on-tertiary-fixed": "#341100",
+            "surface-variant": "#e1e3e4",
+            "on-error": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "on-error-container": "#93000a",
+            "inverse-surface": "#2e3132",
+            "on-primary-fixed-variant": "#004493",
+            "error-container": "#ffdad6",
+            "surface-container-low": "#f2f4f5",
+            "outline": "#727785",
+            "tertiary-container": "#c55500",
+            "error": "#ba1a1a",
+            "on-background": "#191c1d",
+            "on-primary-container": "#ffffff",
+            "on-secondary-fixed": "#001a41",
+            "outline-variant": "#c1c6d6",
+            "on-secondary-container": "#3d5481",
+            "surface-bright": "#f8fafb",
+            "on-tertiary-container": "#0e0200",
+            "on-tertiary-fixed-variant": "#783100",
+            "tertiary-fixed-dim": "#ffb691",
+            "secondary-fixed": "#d8e2ff",
+            "inverse-on-surface": "#eff1f2",
+            "secondary": "#475e8c",
+            "surface-container-high": "#e6e8e9",
+            "surface": "#f8fafb",
+            "primary-fixed-dim": "#adc7ff",
+            "background": "#f8fafb",
+            "primary": "#005bbf",
+            "on-surface": "#191c1d",
+            "secondary-fixed-dim": "#afc7fb",
+            "tertiary": "#9e4300",
+            "inverse-primary": "#adc7ff",
+            "on-primary-fixed": "#001a41",
+            "surface-container-highest": "#e1e3e4",
+            "on-surface-variant": "#414754",
+            "on-primary": "#ffffff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "fontFamily": {
+            "headline": ["Plus Jakarta Sans"],
+            "body": ["Inter"],
+            "label": ["Inter"]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      font-size: 20px;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .headline-font {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar Implementation -->
+<header class="fixed top-0 w-full z-50 h-12 bg-[#1a73e8] dark:bg-blue-900 text-white font-['Plus_Jakarta_Sans'] text-sm font-medium flex items-center justify-between px-4 shadow-md">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-xl">menu</span>
+<span class="text-lg font-bold">Google Cloud Console</span>
+</div>
+<div class="flex items-center gap-2 px-3 py-1 bg-blue-700 text-white rounded cursor-pointer hover:bg-blue-600 transition-colors">
+<span>Project Selector</span>
+<span class="material-symbols-outlined">arrow_drop_down</span>
+</div>
+<div class="relative w-96 ml-4">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-blue-100">search</span>
+<input class="w-full bg-blue-600/50 border-none rounded py-1 pl-10 pr-4 text-white placeholder-blue-100 focus:ring-0 text-sm" placeholder="Search resources, properties, and more" type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined hover:bg-blue-600 p-1.5 rounded cursor-pointer transition-colors">notifications</span>
+<span class="material-symbols-outlined hover:bg-blue-600 p-1.5 rounded cursor-pointer transition-colors">help</span>
+<span class="material-symbols-outlined hover:bg-blue-600 p-1.5 rounded cursor-pointer transition-colors">settings</span>
+<img alt="User profile" class="w-8 h-8 rounded-full border border-blue-400 object-cover" data-alt="Close-up professional headshot of a user with a neutral background and warm studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEF5GgN5aPOhPJP0Lc6_VsNeFx2FjdL_0krpp6CuyFQGKH1-gmQatGtxd3IoIfjLekQdPGAt48SaVyrWrGCVVGEgbMCO4V1GC9LDZ0h7LYj3RLd_cn3mIkzL5mE1mxxxEFCUolF0trz9fUmooGTGYgTzsou8urFvuD-NPAYRCNq0oO855l-qrX-30LOnQEzfZYKrFk3U3PtKBMTS50SJGnepP-Vd7PevaASpPEo4tOnx1TTmUu0puCkNEyg5Dkm7gETXfeeZu66Xs"/>
+</div>
+</header>
+<!-- SideNavBar Implementation -->
+<aside class="fixed left-0 top-12 bottom-0 w-64 bg-[#f2f4f5] dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col pt-4 z-40">
+<div class="px-6 mb-6">
+<div class="flex items-center gap-2 text-[#1a73e8] dark:text-blue-400">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">cloud</span>
+<span class="font-bold text-base tracking-tight uppercase">Storage</span>
+</div>
+</div>
+<nav class="flex-1 font-['Inter'] text-[13px] leading-tight">
+<a class="border-l-4 border-[#1a73e8] text-[#1a73e8] bg-[#e1e3e4] dark:bg-blue-900/20 font-semibold py-3 px-6 flex items-center gap-3 transition-all duration-150" href="#">
+<span class="material-symbols-outlined">explore</span> Explorer
+      </a>
+<a class="text-slate-600 dark:text-slate-400 py-3 px-6 flex items-center gap-3 hover:bg-[#e1e3e4] dark:hover:bg-slate-800 transition-all duration-150" href="#">
+<span class="material-symbols-outlined">sync</span> Sync
+      </a>
+<a class="text-slate-600 dark:text-slate-400 py-3 px-6 flex items-center gap-3 hover:bg-[#e1e3e4] dark:hover:bg-slate-800 transition-all duration-150" href="#">
+<span class="material-symbols-outlined">share</span> Sharing
+      </a>
+<a class="text-slate-600 dark:text-slate-400 py-3 px-6 flex items-center gap-3 hover:bg-[#e1e3e4] dark:hover:bg-slate-800 transition-all duration-150" href="#">
+<span class="material-symbols-outlined">settings</span> Settings
+      </a>
+</nav>
+<div class="mt-auto p-4 border-t border-slate-200/50">
+<div class="bg-surface-container-highest rounded-lg p-3 text-xs">
+<div class="flex justify-between mb-1">
+<span class="text-on-surface-variant">Storage usage</span>
+<span class="font-semibold text-primary">64%</span>
+</div>
+<div class="w-full bg-slate-300 h-1 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[64%]"></div>
+</div>
+<p class="mt-2 text-slate-500">1.2 TB of 2.0 TB used</p>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 mt-12 min-h-screen flex flex-col bg-surface overflow-hidden">
+<!-- Action Bar -->
+<section class="h-14 flex items-center justify-between px-6 bg-surface border-b border-surface-variant/50 sticky top-12 z-30">
+<div class="flex items-center gap-4">
+<h1 class="headline-font text-xl font-semibold text-on-surface">Main Repository</h1>
+<div class="h-6 w-px bg-outline-variant/30"></div>
+<nav class="flex items-center text-sm text-on-surface-variant font-medium">
+<a class="hover:text-primary" href="#">Buckets</a>
+<span class="material-symbols-outlined mx-1 text-base">chevron_right</span>
+<a class="text-on-surface" href="#">nas-prod-01</a>
+</nav>
+</div>
+<div class="flex items-center gap-2">
+<button class="bg-gradient-to-r from-primary to-primary-container text-white px-4 py-2 rounded text-sm font-medium flex items-center gap-2 shadow-sm hover:brightness-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px]">create_new_folder</span>
+          New Folder
+        </button>
+<button class="bg-surface-container-highest text-primary px-4 py-2 rounded text-sm font-medium flex items-center gap-2 hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[18px]">upload_file</span>
+          Upload Files
+        </button>
+<button class="text-on-surface-variant hover:bg-surface-container-high p-2 rounded transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</section>
+<!-- Toolbar -->
+<div class="px-6 py-3 bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">filter_list</span>
+<span class="text-xs font-semibold uppercase tracking-wider text-on-surface-variant">Filter files</span>
+</div>
+<div class="flex items-center gap-6 text-xs text-on-surface-variant">
+<span class="flex items-center gap-1 cursor-pointer hover:text-primary"><span class="material-symbols-outlined text-[16px]">refresh</span> Refresh</span>
+<span class="flex items-center gap-1 cursor-pointer hover:text-primary"><span class="material-symbols-outlined text-[16px]">download</span> Download</span>
+<span class="flex items-center gap-1 cursor-pointer hover:text-primary text-error"><span class="material-symbols-outlined text-[16px]">delete</span> Delete</span>
+</div>
+</div>
+<!-- Layout Container -->
+<div class="flex-1 flex overflow-hidden">
+<!-- File Explorer List -->
+<div class="flex-1 overflow-auto bg-surface">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-surface-variant/50 text-on-surface-variant text-xs font-semibold uppercase tracking-tight">
+<th class="py-3 px-6 w-10">
+<input class="rounded-sm border-outline-variant text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+</th>
+<th class="py-3 px-4 font-semibold">Name</th>
+<th class="py-3 px-4 font-semibold">Size</th>
+<th class="py-3 px-4 font-semibold">Type</th>
+<th class="py-3 px-4 font-semibold">Last Modified</th>
+<th class="py-3 px-4 w-10"></th>
+</tr>
+</thead>
+<tbody class="text-[13px] text-on-surface">
+<!-- Row 1: Folder -->
+<tr class="hover:bg-surface-container-low cursor-pointer border-b border-surface-variant/20 group">
+<td class="py-3 px-6"><input class="rounded-sm border-outline-variant text-primary h-4 w-4" type="checkbox"/></td>
+<td class="py-3 px-4 flex items-center gap-3 font-medium">
+<span class="material-symbols-outlined text-blue-400" style="font-variation-settings: 'FILL' 1;">folder</span>
+                Client_Assets_2024
+              </td>
+<td class="py-3 px-4 text-on-surface-variant">—</td>
+<td class="py-3 px-4 text-on-surface-variant">Folder</td>
+<td class="py-3 px-4 text-on-surface-variant">Oct 12, 2023, 11:45 AM</td>
+<td class="py-3 px-4 text-on-surface-variant opacity-0 group-hover:opacity-100"><span class="material-symbols-outlined">more_vert</span></td>
+</tr>
+<!-- Row 2: File Active Selection -->
+<tr class="bg-blue-50/50 hover:bg-blue-50 cursor-pointer border-b border-primary-fixed/30 group">
+<td class="py-3 px-6"><input checked="" class="rounded-sm border-outline-variant text-primary h-4 w-4" type="checkbox"/></td>
+<td class="py-3 px-4 flex items-center gap-3 font-medium">
+<span class="material-symbols-outlined text-primary">image</span>
+                Q4_Strategic_Marketing_Banner.png
+              </td>
+<td class="py-3 px-4 text-on-surface-variant">14.2 MB</td>
+<td class="py-3 px-4 text-on-surface-variant">PNG Image</td>
+<td class="py-3 px-4 text-on-surface-variant">Just now</td>
+<td class="py-3 px-4 text-on-surface-variant opacity-100"><span class="material-symbols-outlined">more_vert</span></td>
+</tr>
+<!-- Row 3: PDF -->
+<tr class="hover:bg-surface-container-low cursor-pointer border-b border-surface-variant/20 group">
+<td class="py-3 px-6"><input class="rounded-sm border-outline-variant text-primary h-4 w-4" type="checkbox"/></td>
+<td class="py-3 px-4 flex items-center gap-3 font-medium">
+<span class="material-symbols-outlined text-error">picture_as_pdf</span>
+                Product_Architecture_v2.pdf
+              </td>
+<td class="py-3 px-4 text-on-surface-variant">4.8 MB</td>
+<td class="py-3 px-4 text-on-surface-variant">PDF Document</td>
+<td class="py-3 px-4 text-on-surface-variant">Sep 28, 2023, 4:12 PM</td>
+<td class="py-3 px-4 text-on-surface-variant opacity-0 group-hover:opacity-100"><span class="material-symbols-outlined">more_vert</span></td>
+</tr>
+<!-- Row 4: Spreadsheet -->
+<tr class="hover:bg-surface-container-low cursor-pointer border-b border-surface-variant/20 group">
+<td class="py-3 px-6"><input class="rounded-sm border-outline-variant text-primary h-4 w-4" type="checkbox"/></td>
+<td class="py-3 px-4 flex items-center gap-3 font-medium">
+<span class="material-symbols-outlined text-green-600">table_chart</span>
+                Budget_Projections_FY25.xlsx
+              </td>
+<td class="py-3 px-4 text-on-surface-variant">856 KB</td>
+<td class="py-3 px-4 text-on-surface-variant">Spreadsheet</td>
+<td class="py-3 px-4 text-on-surface-variant">Aug 15, 2023, 9:30 AM</td>
+<td class="py-3 px-4 text-on-surface-variant opacity-0 group-hover:opacity-100"><span class="material-symbols-outlined">more_vert</span></td>
+</tr>
+<!-- Row 5: Zip -->
+<tr class="hover:bg-surface-container-low cursor-pointer border-b border-surface-variant/20 group">
+<td class="py-3 px-6"><input class="rounded-sm border-outline-variant text-primary h-4 w-4" type="checkbox"/></td>
+<td class="py-3 px-4 flex items-center gap-3 font-medium">
+<span class="material-symbols-outlined text-on-surface-variant">folder_zip</span>
+                Archive_2022_Full.zip
+              </td>
+<td class="py-3 px-4 text-on-surface-variant">2.4 GB</td>
+<td class="py-3 px-4 text-on-surface-variant">Archive</td>
+<td class="py-3 px-4 text-on-surface-variant">Jan 05, 2023, 2:15 PM</td>
+<td class="py-3 px-4 text-on-surface-variant opacity-0 group-hover:opacity-100"><span class="material-symbols-outlined">more_vert</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Details Pane -->
+<aside class="w-80 bg-surface border-l border-surface-variant/50 flex flex-col overflow-y-auto">
+<div class="p-4 border-b border-surface-variant/50 flex items-center justify-between sticky top-0 bg-surface z-10">
+<h2 class="headline-font font-bold text-sm">File Details</h2>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:bg-surface-container-high rounded p-1">close</span>
+</div>
+<div class="p-6 space-y-6">
+<div class="aspect-video bg-surface-container-low rounded-lg overflow-hidden border border-outline-variant/20 group relative">
+<img class="w-full h-full object-cover" data-alt="Screenshot of a vibrant marketing banner with geometric shapes, blue and white color palette, and abstract digital art" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCckluxr1_RBLeSO4uGUJuPNficRZx-e3atttiA7e4GpyKWNd95Aer3S7Z9ZyWz5wUz_DnhAfiZHYYHRgJe1wCrybuN50AbySk6mfMSIlkYNy4u7AKb8BybD_y8snfB8pRDqtuUhBLLUEjhtUoSgwtTyDtAmJpFj6aja3Z-8F0x5nrdr4dTYWblRcup_xt1I4GvPzRhU7MlvcIB0cm4fZbI8Mg9IvKzAjDKVWrplgYcXTT7XnXtvNRsjsPJAWUnEb6YW51RxzyMojQ"/>
+<div class="absolute inset-0 bg-black/5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white text-3xl">zoom_in</span>
+</div>
+</div>
+<div>
+<h3 class="text-sm font-bold mb-3 headline-font">Properties</h3>
+<div class="space-y-4">
+<div class="flex flex-col gap-1">
+<label class="text-[10px] uppercase font-bold tracking-wider text-on-surface-variant">Name</label>
+<span class="text-[13px] font-medium break-all">Q4_Strategic_Marketing_Banner.png</span>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col gap-1">
+<label class="text-[10px] uppercase font-bold tracking-wider text-on-surface-variant">Size</label>
+<span class="text-[13px]">14.2 MB</span>
+</div>
+<div class="flex flex-col gap-1">
+<label class="text-[10px] uppercase font-bold tracking-wider text-on-surface-variant">Created</label>
+<span class="text-[13px]">Oct 24, 2023</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="text-[10px] uppercase font-bold tracking-wider text-on-surface-variant">Location</label>
+<span class="text-[13px] text-primary hover:underline cursor-pointer">/root/nas-prod-01/</span>
+</div>
+<div class="flex flex-col gap-1">
+<label class="text-[10px] uppercase font-bold tracking-wider text-on-surface-variant">Dimensions</label>
+<span class="text-[13px]">1920 x 1080 px</span>
+</div>
+</div>
+</div>
+<div>
+<h3 class="text-sm font-bold mb-3 headline-font">Permissions</h3>
+<div class="flex items-center justify-between bg-surface-container-low p-2 rounded">
+<div class="flex items-center gap-2">
+<img class="w-6 h-6 rounded-full" data-alt="Tiny avatar profile photo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAupEi8AxeYb9uRO1-DjQ5_bDEQB9_wmqzz6zbAPzuVg-DV0n36tp9aKaoVLymuxNZR0xruqet7xeUUEGf26KA_R0VrrFAyp3-ozmEZjNnIqbVGW9M2fPptGl7AUSDOlz7iyURb7oNA909pYyuzQ9j9x4-TBXassPZDTFCvSltNhtXuRf9HqcsB6B4uSLz6e8309AySfiQ8MdUgbKEZDf4luFheDZTo-5Xb5Tml1BnJHJylIAKxDdFwhtDWACg63uGBRBsIOn343Jw"/>
+<span class="text-xs">Owner (Me)</span>
+</div>
+<span class="text-[10px] font-semibold text-on-surface-variant bg-surface-container-high px-1.5 py-0.5 rounded">Full Control</span>
+</div>
+</div>
+<div class="pt-4 border-t border-surface-variant/30">
+<button class="w-full flex items-center justify-center gap-2 text-primary font-semibold text-sm hover:bg-primary-fixed/20 p-2 rounded transition-colors">
+<span class="material-symbols-outlined text-[18px]">history</span>
+              View Version History
+            </button>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Bottom FAB (Hidden on main storage views as per instructions, but kept as a hidden pattern for logic) -->
+<!-- Contextual Suppression Applied: No FAB on Explorer Detail Screen -->
+</body></html>

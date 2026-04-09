@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#005bc0",
+                    "outline-variant": "#c1c6d6",
+                    "on-surface-variant": "#414754",
+                    "inverse-surface": "#2e3132",
+                    "tertiary": "#9e4300",
+                    "surface-container": "#eceeef",
+                    "surface-bright": "#f8fafb",
+                    "primary": "#005bbf",
+                    "tertiary-fixed": "#ffdbcb",
+                    "surface": "#f8fafb",
+                    "secondary-fixed": "#d8e2ff",
+                    "secondary-fixed-dim": "#afc7fb",
+                    "on-surface": "#191c1d",
+                    "secondary-container": "#b2c9fe",
+                    "on-tertiary-fixed": "#341100",
+                    "on-tertiary-container": "#0e0200",
+                    "on-primary": "#ffffff",
+                    "primary-fixed-dim": "#adc7ff",
+                    "surface-container-high": "#e6e8e9",
+                    "primary-fixed": "#d8e2ff",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed-variant": "#783100",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed-variant": "#004493",
+                    "surface-container-highest": "#e1e3e4",
+                    "on-primary-fixed": "#001a41",
+                    "outline": "#727785",
+                    "on-background": "#191c1d",
+                    "background": "#f8fafb",
+                    "on-secondary-fixed": "#001a41",
+                    "on-secondary-fixed-variant": "#2e4673",
+                    "on-secondary-container": "#3d5481",
+                    "surface-dim": "#d8dadb",
+                    "on-error": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "tertiary-container": "#c55500",
+                    "secondary": "#475e8c",
+                    "surface-variant": "#e1e3e4",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-container": "#ffffff",
+                    "inverse-on-surface": "#eff1f2",
+                    "inverse-primary": "#adc7ff",
+                    "tertiary-fixed-dim": "#ffb691",
+                    "surface-container-low": "#f2f4f5",
+                    "primary-container": "#1a73e8"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tonal-anchoring {
+            box-shadow: 0px 12px 32px rgba(25, 28, 29, 0.04);
+        }
+        .inset-well {
+            background-color: #e1e3e4;
+            border: 1px solid rgba(193, 198, 214, 0.1);
+            transition: all 0.2s ease;
+        }
+        .inset-well:focus-within {
+            background-color: #ffffff;
+            border-color: #005bbf;
+            outline: none;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface flex flex-col min-h-screen">
+<!-- TopAppBar suppressed due to Transactional Focus (Login) per Shell Visibility Rules -->
+<!-- Main Content Canvas -->
+<main class="flex-grow flex items-center justify-center px-4 py-12">
+<div class="grid md:grid-cols-2 max-w-5xl w-full bg-surface-container-lowest rounded-lg tonal-anchoring overflow-hidden">
+<!-- Branding/Visual Side (Asymmetric Layout) -->
+<div class="hidden md:flex flex-col justify-between p-12 bg-surface-container-low relative overflow-hidden">
+<div class="z-10">
+<h2 class="font-headline text-display-md text-on-surface tracking-tight mb-2">Mini-NAS</h2>
+<p class="font-label text-label-md uppercase tracking-wider text-primary">Cloud Solutions</p>
+</div>
+<div class="z-10 mt-12">
+<h3 class="font-headline text-2xl text-on-surface-variant leading-tight">Your data, orchestrated with surgical precision.</h3>
+<p class="mt-4 text-on-surface-variant/70 leading-relaxed">Experience the next generation of personal cloud storage. Simple, secure, and infinitely scalable.</p>
+</div>
+<div class="absolute -bottom-24 -right-24 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+<div class="absolute top-1/2 left-0 w-32 h-32 bg-primary-container/10 rounded-full blur-2xl"></div>
+</div>
+<!-- Login Form Side -->
+<div class="p-8 md:p-16 flex flex-col justify-center">
+<div class="mb-8">
+<h1 class="font-headline text-3xl font-bold text-on-surface">Sign In</h1>
+<p class="text-on-surface-variant mt-2">Welcome back to your private cloud workspace.</p>
+</div>
+<form class="space-y-6">
+<!-- Username Field -->
+<div class="space-y-2">
+<label class="font-label text-xs uppercase tracking-widest text-on-surface-variant font-semibold">Username</label>
+<div class="inset-well rounded flex items-center px-4 py-3">
+<span class="material-symbols-outlined text-outline mr-3">person</span>
+<input class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline-variant" placeholder="e.g. administrator" type="text"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-2">
+<div class="flex justify-between items-center">
+<label class="font-label text-xs uppercase tracking-widest text-on-surface-variant font-semibold">Password</label>
+<a class="text-xs text-primary hover:underline transition-all" href="#">Forgot password?</a>
+</div>
+<div class="inset-well rounded flex items-center px-4 py-3">
+<span class="material-symbols-outlined text-outline mr-3">lock</span>
+<input class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline-variant" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<!-- Options -->
+<div class="flex items-center">
+<input class="w-4 h-4 rounded-sm border-outline-variant text-primary focus:ring-primary/20" id="remember" type="checkbox"/>
+<label class="ml-2 text-sm text-on-surface-variant" for="remember">Keep me signed in</label>
+</div>
+<!-- Sign In Button -->
+<button class="w-full py-3 px-6 bg-gradient-to-r from-primary to-primary-container text-on-primary font-semibold rounded shadow-sm hover:shadow-md active:scale-95 transition-all duration-200" type="submit">
+                        Sign In
+                    </button>
+<!-- Divider -->
+<div class="relative py-4">
+<div class="absolute inset-0 flex items-center"><div class="w-full border-t border-outline-variant/20"></div></div>
+<div class="relative flex justify-center text-xs uppercase tracking-widest"><span class="bg-surface-container-lowest px-4 text-on-surface-variant/40">or continue with</span></div>
+</div>
+<!-- Social Login -->
+<button class="w-full py-3 px-6 bg-surface-container-highest text-on-surface font-medium rounded flex items-center justify-center gap-3 hover:bg-surface-container-high transition-colors active:scale-95 duration-200" type="button">
+<img alt="Google Logo" class="w-5 h-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAu9Q7i0dG_m9C6g7XipRdYrqVJhm87cl1gFKQ2oDXLwI59ZxPfFxRUjUkqaf_9qFX-HyqLZf8zsnTydRKheZHrZWmxzSnA_mGWTklL4Suu16o56AkwvpF9UQV6bRdSQrq_VsVRdCAOy_771zW9Tqh0i5_9kvF8GqBQSkyBkYtQaMvmnl50cLLW5D78pUpQB6f7qD-rkwvYY5EXaLJcgbCW4RJDmFs4XzgRzxXnPf0cxNaVvBBreqNWhyc0oBkKzvHp23XfH9JxHEM"/>
+                        Sign in with Google
+                    </button>
+</form>
+<div class="mt-8 text-center">
+<p class="text-sm text-on-surface-variant">
+                        New to Mini-NAS? 
+                        <a class="text-primary font-semibold hover:underline" href="#">Create an account</a>
+</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer from Shared Components JSON -->
+<footer class="fixed bottom-0 w-full py-6 flex justify-center gap-8 items-center px-4 bg-transparent">
+<span class="text-xs font-normal text-[#191c1d]/60 dark:text-[#f8fafb]/60 Inter">© 2024 Mini-NAS Cloud Solutions</span>
+<div class="flex gap-8">
+<a class="text-[#191c1d]/60 dark:text-[#f8fafb]/60 text-xs font-normal Inter hover:text-[#1A73E8] transition-colors" href="#">Privacy Policy</a>
+<a class="text-[#191c1d]/60 dark:text-[#f8fafb]/60 text-xs font-normal Inter hover:text-[#1A73E8] transition-colors" href="#">Terms of Service</a>
+<a class="text-[#191c1d]/60 dark:text-[#f8fafb]/60 text-xs font-normal Inter hover:text-[#1A73E8] transition-colors" href="#">Documentation</a>
+</div>
+</footer>
+</body></html>

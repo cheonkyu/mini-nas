@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mini-NAS | File Sharing &amp; Links</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed": "#d8e2ff",
+                    "on-secondary": "#ffffff",
+                    "surface-dim": "#d8dadb",
+                    "on-secondary-fixed-variant": "#2e4673",
+                    "surface-tint": "#005bc0",
+                    "secondary-container": "#b2c9fe",
+                    "primary-container": "#1a73e8",
+                    "tertiary-fixed": "#ffdbcb",
+                    "surface-container": "#eceeef",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed": "#341100",
+                    "surface-variant": "#e1e3e4",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "inverse-surface": "#2e3132",
+                    "on-primary-fixed-variant": "#004493",
+                    "error-container": "#ffdad6",
+                    "surface-container-low": "#f2f4f5",
+                    "outline": "#727785",
+                    "tertiary-container": "#c55500",
+                    "error": "#ba1a1a",
+                    "on-background": "#191c1d",
+                    "on-primary-container": "#ffffff",
+                    "on-secondary-fixed": "#001a41",
+                    "outline-variant": "#c1c6d6",
+                    "on-secondary-container": "#3d5481",
+                    "surface-bright": "#f8fafb",
+                    "on-tertiary-container": "#0e0200",
+                    "on-tertiary-fixed-variant": "#783100",
+                    "tertiary-fixed-dim": "#ffb691",
+                    "secondary-fixed": "#d8e2ff",
+                    "inverse-on-surface": "#eff1f2",
+                    "secondary": "#475e8c",
+                    "surface-container-high": "#e6e8e9",
+                    "surface": "#f8fafb",
+                    "primary-fixed-dim": "#adc7ff",
+                    "background": "#f8fafb",
+                    "primary": "#005bbf",
+                    "on-surface": "#191c1d",
+                    "secondary-fixed-dim": "#afc7fb",
+                    "tertiary": "#9e4300",
+                    "inverse-primary": "#adc7ff",
+                    "on-primary-fixed": "#001a41",
+                    "surface-container-highest": "#e1e3e4",
+                    "on-surface-variant": "#414754",
+                    "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-fixed">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 h-12 bg-[#1a73e8] dark:bg-blue-900 text-white font-['Plus_Jakarta_Sans'] text-sm font-medium shadow-md flex items-center justify-between px-4">
+<div class="flex items-center gap-8">
+<div class="text-lg font-bold text-white tracking-tight">Mini-NAS</div>
+<div class="flex items-center gap-2 bg-blue-700 text-white px-3 py-1 rounded transition-colors hover:bg-blue-600 cursor-pointer">
+<span>Project Selector</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</div>
+</div>
+<div class="flex-1 max-w-2xl px-8">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-white/70">search</span>
+<input class="w-full bg-white/10 border-none rounded px-10 py-1.5 focus:bg-white focus:text-on-surface focus:ring-0 transition-all text-sm placeholder:text-white/60" placeholder="Search resources and links" type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-1 hover:bg-blue-600 rounded transition-colors scale-95 active:scale-90"><span class="material-symbols-outlined">notifications</span></button>
+<button class="p-1 hover:bg-blue-600 rounded transition-colors scale-95 active:scale-90"><span class="material-symbols-outlined">help</span></button>
+<button class="p-1 hover:bg-blue-600 rounded transition-colors scale-95 active:scale-90"><span class="material-symbols-outlined">settings</span></button>
+<div class="w-8 h-8 rounded-full bg-blue-400 overflow-hidden ml-2 border border-white/20">
+<img alt="User profile" data-alt="Professional headshot of a software engineer in a bright modern office setting, clean lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjaSgZ54ZPVIQzJNuHtjbukt6L1b68_ge5GW7k7m8Il8N7AFOESHw8p5KA_qEvTRp9fcruB5bn5foGmK8ZX6JxH-zZJipYgn-yK6sKL1_zNRVl1527Aw75mgOYe69LAEXrJJM2AcV3SmzMDq59st38DuU1_fHFsUv3i-vT3CsBHutlWkFJXOIpYALALDLLG1CdJHmAAmLj-hUeEcfZVibo_dG4ZOVBQIwOL2QS5mpp4_G2WBR08V7tnmLdSbCGfYhkdmFx550RsPE"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-12 bottom-0 w-64 border-r border-slate-200 dark:border-slate-800 bg-[#f2f4f5] dark:bg-slate-900 flex flex-col h-full pt-4 z-40">
+<div class="px-6 mb-6">
+<div class="text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-1">Navigation</div>
+<div class="text-[13px] text-slate-400">Management</div>
+</div>
+<nav class="flex-1 font-['Inter'] text-[13px] leading-tight">
+<a class="text-slate-600 dark:text-slate-400 py-3 px-6 flex items-center gap-3 hover:bg-[#e1e3e4] dark:hover:bg-slate-800 transition-all duration-150" href="#">
+<span class="material-symbols-outlined text-[#1a73e8]">explore</span>
+                Explorer
+            </a>
+<a class="text-slate-600 dark:text-slate-400 py-3 px-6 flex items-center gap-3 hover:bg-[#e1e3e4] dark:hover:bg-slate-800 transition-all duration-150" href="#">
+<span class="material-symbols-outlined text-[#1a73e8]">sync</span>
+                Sync
+            </a>
+<a class="border-l-4 border-[#1a73e8] text-[#1a73e8] bg-[#e1e3e4] dark:bg-blue-900/20 font-semibold py-3 px-6 flex items-center gap-3 transition-all duration-150" href="#">
+<span class="material-symbols-outlined">share</span>
+                Sharing
+            </a>
+<a class="text-slate-600 dark:text-slate-400 py-3 px-6 flex items-center gap-3 hover:bg-[#e1e3e4] dark:hover:bg-slate-800 transition-all duration-150" href="#">
+<span class="material-symbols-outlined text-[#1a73e8]">settings</span>
+                Settings
+            </a>
+</nav>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-64 mt-12 p-8 min-h-screen bg-surface">
+<!-- Header Section -->
+<header class="mb-10 max-w-6xl">
+<div class="flex items-center gap-2 mb-2">
+<span class="text-[11px] font-bold uppercase tracking-wider text-primary opacity-80">Distribution Hub</span>
+</div>
+<h1 class="text-4xl font-extrabold text-on-surface tracking-tight mb-2">File Sharing &amp; Links</h1>
+<p class="text-on-surface-variant max-w-2xl leading-relaxed">Securely generate public and private access points for your NAS assets. Monitor engagement and manage link lifecycles in real-time.</p>
+</header>
+<!-- Content Grid -->
+<div class="grid grid-cols-12 gap-8 max-w-7xl">
+<!-- Left Column: Form -->
+<div class="col-span-12 lg:col-span-5 flex flex-col gap-8">
+<section class="bg-surface-container-lowest p-8 rounded-lg shadow-sm border border-outline-variant/10">
+<h2 class="text-xl font-bold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">add_link</span>
+                        Create Share Link
+                    </h2>
+<form class="space-y-6">
+<div>
+<label class="block text-xs font-bold text-on-surface-variant uppercase tracking-wide mb-2">Resource Path</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-lg">folder_open</span>
+<input class="w-full bg-surface-container-high border-none rounded-lg pl-10 pr-4 py-3 text-sm focus:bg-white focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all" placeholder="/volumes/media/backups/Q3_report.pdf" type="text"/>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-xs font-bold text-on-surface-variant uppercase tracking-wide mb-2">Expiry</label>
+<select class="w-full bg-surface-container-high border-none rounded-lg px-4 py-3 text-sm focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all appearance-none">
+<option>24 Hours</option>
+<option>7 Days</option>
+<option>30 Days</option>
+<option>Never</option>
+</select>
+</div>
+<div>
+<label class="block text-xs font-bold text-on-surface-variant uppercase tracking-wide mb-2">Access Level</label>
+<select class="w-full bg-surface-container-high border-none rounded-lg px-4 py-3 text-sm focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all appearance-none">
+<option>View Only</option>
+<option>Download</option>
+<option>Full Control</option>
+</select>
+</div>
+</div>
+<div class="space-y-4 pt-2">
+<div class="flex items-center justify-between p-3 bg-surface-container-low rounded-lg">
+<div class="flex flex-col">
+<span class="text-sm font-semibold">Password Protection</span>
+<span class="text-[11px] text-on-surface-variant">Require credentials to view</span>
+</div>
+<div class="w-10 h-5 bg-primary-container rounded-full relative cursor-pointer">
+<div class="absolute right-1 top-1 w-3 h-3 bg-white rounded-full"></div>
+</div>
+</div>
+<div class="flex items-center justify-between p-3 bg-surface-container-low rounded-lg">
+<div class="flex flex-col">
+<span class="text-sm font-semibold">Audit Logs</span>
+<span class="text-[11px] text-on-surface-variant">Track all access attempts</span>
+</div>
+<div class="w-10 h-5 bg-outline-variant rounded-full relative cursor-pointer">
+<div class="absolute left-1 top-1 w-3 h-3 bg-white rounded-full"></div>
+</div>
+</div>
+</div>
+<button class="w-full bg-gradient-to-r from-primary to-primary-container text-on-primary font-bold py-3.5 rounded-lg shadow-lg hover:shadow-primary/20 transition-all active:scale-[0.98] mt-4">
+                            Generate Secure Link
+                        </button>
+</form>
+</section>
+<!-- Health Score Card -->
+<section class="bg-surface-container-lowest p-8 rounded-lg shadow-sm border border-outline-variant/10 flex items-center justify-between">
+<div>
+<h3 class="text-sm font-bold text-on-surface-variant uppercase tracking-wide mb-1">Health Score</h3>
+<div class="text-3xl font-extrabold text-on-surface">94<span class="text-lg font-normal text-outline-variant">/100</span></div>
+<p class="text-xs text-on-surface-variant mt-2 max-w-[140px]">All distributed links are healthy and within traffic limits.</p>
+</div>
+<div class="relative w-24 h-24">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-surface-container-highest" cx="48" cy="48" fill="transparent" r="40" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-primary" cx="48" cy="48" fill="transparent" r="40" stroke="currentColor" stroke-dasharray="251.2" stroke-dashoffset="15" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Table -->
+<div class="col-span-12 lg:col-span-7">
+<div class="bg-surface-container-lowest rounded-lg shadow-sm border border-outline-variant/10 overflow-hidden">
+<div class="p-6 border-b border-surface-container-low flex justify-between items-center">
+<h2 class="text-lg font-bold">Active Distributions</h2>
+<div class="flex gap-2">
+<button class="p-2 hover:bg-surface-container-low rounded transition-colors"><span class="material-symbols-outlined text-lg">filter_list</span></button>
+<button class="p-2 hover:bg-surface-container-low rounded transition-colors"><span class="material-symbols-outlined text-lg">download</span></button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low/50">
+<th class="px-6 py-4 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Asset Name</th>
+<th class="px-6 py-4 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Engagement</th>
+<th class="px-6 py-4 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Expiry</th>
+<th class="px-6 py-4 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="px-6 py-4"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-low">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary/5 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-sm">picture_as_pdf</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-semibold">Q3_financial_results.pdf</span>
+<span class="text-[10px] text-outline">/media/reports/2023/</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<div class="w-24 h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-3/4 rounded-full"></div>
+</div>
+<span class="text-xs font-medium">1.2k</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-xs font-medium">2d 14h left</span>
+<span class="text-[10px] text-outline">Oct 24, 2023</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-2 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded-full uppercase tracking-tighter">Active</span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="opacity-0 group-hover:opacity-100 p-2 hover:bg-surface-container-high rounded transition-all"><span class="material-symbols-outlined text-lg">more_vert</span></button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-secondary/5 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-sm">folder_zip</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-semibold">project_nebula_assets.zip</span>
+<span class="text-[10px] text-outline">/nas-root/projects/nebula/</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<div class="w-24 h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-1/4 rounded-full"></div>
+</div>
+<span class="text-xs font-medium">244</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-xs font-medium">12h left</span>
+<span class="text-[10px] text-outline">Oct 22, 2023</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-2 py-1 bg-tertiary/10 text-tertiary text-[10px] font-bold rounded-full uppercase tracking-tighter">Expiring</span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="opacity-0 group-hover:opacity-100 p-2 hover:bg-surface-container-high rounded transition-all"><span class="material-symbols-outlined text-lg">more_vert</span></button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-error/5 flex items-center justify-center">
+<span class="material-symbols-outlined text-error text-sm">movie</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-semibold">brand_hero_video_v3.mp4</span>
+<span class="text-[10px] text-outline">/media/marketing/video/</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<div class="w-24 h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-outline-variant w-full rounded-full"></div>
+</div>
+<span class="text-xs font-medium">4.8k</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col text-outline">
+<span class="text-xs font-medium">Expired</span>
+<span class="text-[10px]">Oct 20, 2023</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-2 py-1 bg-surface-container-highest text-outline text-[10px] font-bold rounded-full uppercase tracking-tighter">Inactive</span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="opacity-0 group-hover:opacity-100 p-2 hover:bg-surface-container-high rounded transition-all"><span class="material-symbols-outlined text-lg">more_vert</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Usage Analytics Preview -->
+<div class="mt-8 grid grid-cols-2 gap-4">
+<div class="bg-surface-container-lowest p-6 rounded-lg border border-outline-variant/10">
+<div class="text-[11px] font-bold text-on-surface-variant uppercase tracking-widest mb-4">Total Bandwidth</div>
+<div class="flex items-end gap-2">
+<span class="text-3xl font-extrabold">2.4 TB</span>
+<span class="text-green-600 text-sm font-bold flex items-center mb-1">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                                12%
+                            </span>
+</div>
+<div class="mt-6 flex gap-1 items-end h-16">
+<div class="bg-primary/20 w-full h-[40%] rounded-t-sm"></div>
+<div class="bg-primary/20 w-full h-[60%] rounded-t-sm"></div>
+<div class="bg-primary/20 w-full h-[30%] rounded-t-sm"></div>
+<div class="bg-primary/20 w-full h-[80%] rounded-t-sm"></div>
+<div class="bg-primary/20 w-full h-[55%] rounded-t-sm"></div>
+<div class="bg-primary w-full h-[95%] rounded-t-sm"></div>
+<div class="bg-primary/20 w-full h-[70%] rounded-t-sm"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-lg border border-outline-variant/10">
+<div class="text-[11px] font-bold text-on-surface-variant uppercase tracking-widest mb-4">Top Region</div>
+<div class="flex items-end gap-2">
+<span class="text-3xl font-extrabold">North Am.</span>
+</div>
+<div class="mt-4 flex flex-col gap-2">
+<div class="flex justify-between items-center text-xs">
+<span>US-East</span>
+<span class="font-bold">64%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[64%]"></div>
+</div>
+<div class="flex justify-between items-center text-xs mt-1">
+<span>EU-West</span>
+<span class="font-bold">22%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[22%]"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Contextual FAB (Suppressed for this screen layout as per instructions) -->
+</body></html>
